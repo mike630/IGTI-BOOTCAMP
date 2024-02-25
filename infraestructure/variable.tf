@@ -1,5 +1,5 @@
 variable "base_bucket_name" {
-  default = "datalake-igti-tf"
+  default = "bucket-tf"
 }
 
 variable "ambiente" {
@@ -8,4 +8,8 @@ variable "ambiente" {
 
 variable "numero_conta" {
   default = "930367485749"
+}
+
+variable "aws_region" {
+  default = "us-east-2"
 }
