@@ -1,8 +1,8 @@
- name: PULL REQUEST VALIDATION
+name: PULL REQUEST VALIDATION
 
- on:
-  pull-request:
-    branches: [main]
+on:
+pull-request:
+  branches: [main]
 
 jobs:
   build:
