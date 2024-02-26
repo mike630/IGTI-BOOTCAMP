@@ -1,2 +1,4 @@
 data/*
 .terraform*
+.DS_Store
+.venv

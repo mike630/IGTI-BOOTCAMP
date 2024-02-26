@@ -3,8 +3,8 @@ resource "aws_kms_key" "mykey" {
   deletion_window_in_days = 10
 }
 
-resource "aws_s3_bucket" "example" {
-  bucket = "${var.ambiente}-${var.base_bucket_name}-${var.numero_conta}"
+resource "aws_s3_bucket" "dl" {
+  bucket = "${var.ambiente}-${var.base_bucket_name}"
 
   tags = {
     IES   = "IGTI",
@@ -13,7 +13,7 @@ resource "aws_s3_bucket" "example" {
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "example" {
-  bucket = aws_s3_bucket.example.id
+  bucket = aws_s3_bucket.dl.id
 
   rule {
     apply_server_side_encryption_by_default {
@@ -24,7 +24,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "example" {
 }
 
 resource "aws_s3_bucket_ownership_controls" "example" {
-  bucket = aws_s3_bucket.example.id
+  bucket = aws_s3_bucket.dl.id
   rule {
     object_ownership = "BucketOwnerPreferred"
   }
@@ -33,12 +33,12 @@ resource "aws_s3_bucket_ownership_controls" "example" {
 resource "aws_s3_bucket_acl" "example" {
   depends_on = [aws_s3_bucket_ownership_controls.example]
 
-  bucket = aws_s3_bucket.example.id
+  bucket = aws_s3_bucket.dl.id
   acl    = "private"
 }
 
 resource "aws_s3_bucket_versioning" "versioning_example" {
-  bucket = aws_s3_bucket.example.id
+  bucket = aws_s3_bucket.dl.id
   versioning_configuration {
     status = "Enabled"
   }
