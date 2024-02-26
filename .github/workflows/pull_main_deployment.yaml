@@ -40,8 +40,8 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         retry-max-attempts: 2
 
-    - name: Build Lambda Package
-      run:|
+    - name: Build Lambda package
+      run: |
         sh scripts/build_lambda_package.sh
     
     - name: Applying of the Infraestructure as Code
