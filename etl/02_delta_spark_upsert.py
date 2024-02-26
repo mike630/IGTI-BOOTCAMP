@@ -21,11 +21,12 @@ spark = (SparkSession.builder.appName("DeltaExercise")
 logger.info("Importing delta.tables...")
 from delta.tables import *
 
+bucket_name = "raw-data-mcn630"
 
 logger.info("Produzindo novos dados...")
 enemnovo = (
     spark.read.format("delta")
-    .load("s3://datalake-ney-igti-edc-tf/staging-zone/enem")
+    .load(f"s3://{bucket_name}/staging-zone/enem")
 )
 
 # Define algumas inscricoes (chaves) que serao alteradas
@@ -87,7 +88,7 @@ enemnovo = enemnovo.withColumn("NO_MUNICIPIO_RESIDENCIA", lit("NOVA CIDADE")).wi
 
 
 logger.info("Pega os dados do Enem velhos na tabela Delta...")
-enemvelho = DeltaTable.forPath(spark, "s3://datalake-ney-igti-edc-tf/staging-zone/enem")
+enemvelho = DeltaTable.forPath(spark, f"s3://{bucket_name}/staging-zone/enem")
 
 
 logger.info("Realiza o UPSERT...")

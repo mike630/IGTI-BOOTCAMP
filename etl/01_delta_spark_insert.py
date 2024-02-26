@@ -12,13 +12,15 @@ spark = (SparkSession.builder.appName("DeltaExercise")
 # Importa o modulo das tabelas delta
 from delta.tables import *
 
+bucket_name = "raw-data-mcn630"
+
 # Leitura de dados
 enem = (
     spark.read.format("csv")
     .option("inferSchema", True)
     .option("header", True)
     .option("delimiter", ";")
-    .load("s3://datalake-ney-igti-edc/raw-data/enem")
+    .load(f"s3://{bucket_name}/*.csv")
 )
 
 # Escreve a tabela em staging em formato delta
@@ -29,5 +31,5 @@ print("Writing delta table...")
     .mode("overwrite")
     .format("delta")
     .partitionBy("year")
-    .save("s3://datalake-ney-igti-edc-tf/staging-zone/enem")
+    .save(f"s3://{bucket_name}/staging-zone/enem")
 )
