@@ -9,11 +9,11 @@ def handler(event, context):
     bucket_name = "bucket-tf"
 
     cluster_id = client.run_job_flow(
-                Name='EMR-Ney-IGTI-delta',
+                Name='EMR-IGTI-CASE',
                 ServiceRole='EMR_DefaultRole',
                 JobFlowRole='EMR_EC2_DefaultRole',
                 VisibleToAllUsers=True,
-                LogUri=f's3://{ambiente}-{bucket_name}/emr-logs',
+                LogUri=f's3://raw-data-mcn630/emr-logs',
                 ReleaseLabel='emr-7.0.0',
                 Instances={
                     'InstanceGroups': [
@@ -32,7 +32,7 @@ def handler(event, context):
                             'InstanceCount': 4,
                         }
                     ],
-                    'Ec2KeyName': 'ney-igti-teste',
+                    'Ec2KeyName': 'igti-emr-key-pair',
                     'KeepJobFlowAliveWhenNoSteps': True,
                     'TerminationProtected': False,
                     'Ec2SubnetId': 'subnet-034e6d4e'

@@ -74,3 +74,8 @@ resource "aws_iam_role_policy_attachment" "lambda_attach" {
   role       = aws_iam_role.lambda.name
   policy_arn = aws_iam_policy.lambda.arn
 }
+
+resource "aws_iam_instance_profile" "emr_ec2_instance_profile" {
+  name = aws_iam_role.lambda.name
+  role = aws_iam_role.lambda.name
+}
