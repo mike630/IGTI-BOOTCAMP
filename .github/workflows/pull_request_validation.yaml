@@ -22,8 +22,8 @@ jobs:
     - name: Installing Python dependencies
       run: |
         python -m pip install --upgrade pip
-        cd infraestructure
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        cd infraestructure/requirements/
+        if [ -f python_requirements.txt ]; then pip install -r python_requirements.txt; fi
 
     - name: Setting up Terraform
       # You may pin to the exact commit or the version.
@@ -39,6 +39,10 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         retry-max-attempts: 2
+
+    - name: Build Lambda Package
+      run:|
+        sh scripts/build_lambda_package.sh
     
     - name: Planning of the Infraestructure as Code
       env:
