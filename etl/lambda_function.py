@@ -32,7 +32,7 @@ def handler(event, context):
                             'InstanceCount': 1,
                         }
                     ],
-                    'Ec2KeyName': 'igti-emr-key-pair',
+                    'Ec2KeyName': 'igti-key-pair',
                     'KeepJobFlowAliveWhenNoSteps': True,
                     'TerminationProtected': False,
                     'Ec2SubnetId': 'subnet-034e6d4e'

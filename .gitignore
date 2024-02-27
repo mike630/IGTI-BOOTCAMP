@@ -4,3 +4,4 @@ data/*
 .venv
 /infraestructure/package
 /infraestructure/lambda_function_payload.zip
+/infraestructure/ssh_key_pairs/
