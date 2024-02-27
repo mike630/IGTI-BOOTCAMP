@@ -9,6 +9,11 @@ PACKAGE="package"
 if [ -d $PACKAGE ]
 then
 	echo "O Diretório "$PACKAGE" já existe."
+	echo "============================================="
+	echo "Removendo arquivos antigos do diretório "$PACKAGE"..."
+	rm -rf $PACKAGE
+	echo "Arquivos removidos."
+	echo "============================================="
 else
 	echo "============================================="
 	echo "Criando o diretório "$PACKAGE"..."

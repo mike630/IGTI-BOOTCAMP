@@ -13,26 +13,26 @@ def handler(event, context):
                 ServiceRole='EMR_DefaultRole',
                 JobFlowRole='EMR_EC2_DefaultRole',
                 VisibleToAllUsers=True,
-                LogUri=f's3://{ambiente}-{bucket_name}/emr-logs',
-                ReleaseLabel='emr-7.0.0',
+                LogUri='s3://datalake-ney-igti-edc-tf/emr-logs',
+                ReleaseLabel='emr-6.3.0',
                 Instances={
                     'InstanceGroups': [
                         {
                             'Name': 'Master nodes',
                             'Market': 'SPOT',
                             'InstanceRole': 'MASTER',
-                            'InstanceType': 'r5.4xlarge',
+                            'InstanceType': 'm5.xlarge',
                             'InstanceCount': 1,
                         },
                         {
                             'Name': 'Worker nodes',
                             'Market': 'SPOT',
                             'InstanceRole': 'CORE',
-                            'InstanceType': 'r5.4xlarge',
-                            'InstanceCount': 4,
+                            'InstanceType': 'm5.xlarge',
+                            'InstanceCount': 1,
                         }
                     ],
-                    'Ec2KeyName': 'ney-igti-teste',
+                    'Ec2KeyName': 'igti-key-pair',
                     'KeepJobFlowAliveWhenNoSteps': True,
                     'TerminationProtected': False,
                     'Ec2SubnetId': 'subnet-034e6d4e'
